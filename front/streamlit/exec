@@ -1,0 +1,12 @@
+curl -X POST http://localhost:5000/api/v1/chatbot \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What do I need to know before using the Siebel application for the first time?"}'
+
+How to troubleshoot for the order failure between AIA and BRM?
+How to find how much time one order takes in a E2E.?
+ pm2 restart streamlit-chatbot
+How do I enable diagnostic level tracing for the Siebel JMS Receiver component?
+
+echo -n 'TuPasswordSeguro123' | sha256sum
+
+

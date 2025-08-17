@@ -1,0 +1,5 @@
+export $(grep -v '^#' .env_oracle | xargs)
+docker compose down
+source .env_oracle  
+sudo rm -rf "$DIR_DEL" 
+sudo rm -f "$ENV_FILE"

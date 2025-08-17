@@ -1,0 +1,36 @@
+#version: "3.9"
+
+services:
+  oracle-python-app:
+    image: oraclelinux:8
+    container_name: frontendai-${COSTUMER}
+    restart: unless-stopped
+    volumes:
+      - ~/.oci:/root/.oci  # OCI config y key
+      - ~/moca/dbai:/app/backend
+      - ~/moca/front:/app/frontendai
+      - /opt/vector-ai/source:/opt/vector-ai/source/
+    working_dir: /app
+    ports:
+      #- "5000:5000"
+      - "${PORT_FRONTEND}:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "
+      set -e &&
+      dnf install -y python39 python39-pip libaio curl unzip git gcc &&
+      curl -fsSL https://rpm.nodesource.com/setup_18.x | bash - &&
+      dnf install -y nodejs && npm install -g pm2 && 
+      alternatives --set python /usr/bin/python3.9 &&
+      alternatives --set python3 /usr/bin/python3.9 &&
+      python3 -m pip install --upgrade pip &&
+      python3 -m pip install oci oracledb PyPDF2 flask langchain langchain-community langchain-core python-dotenv streamlit pandas requests paramiko streamlit-chat && 
+      cd /app/frontendai/api && npm install && pm2 start index.js --name backend &&
+      cd /app/frontendai/streamlit && chmod +x start_streamlit.sh && pm2 start ./start_streamlit.sh --name frontend &&      
+      pm2 save &&
+      mkdir -p /app/marketplace && echo "COSTUMER=${COSTUMER}" > /app/marketplace/${COSTUMER} &&
+      echo '✅ Enviroment Ready..' &&
+      tail -f /dev/null
+      "
+

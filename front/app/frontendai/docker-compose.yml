@@ -1,0 +1,20 @@
+services:
+  oracle-python-app:
+    image: oraclelinux:8
+    container_name: frontendai
+    restart: unless-stopped
+    volumes:
+      - ./app:/app
+      - ~/.oci:/root/.oci  # Para el archivo de configuración de OCI
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "
+      dnf install -y python39 python39-pip libaio &&
+      alternatives --set python /usr/bin/python3.9 &&
+      alternatives --set python3 /usr/bin/python3.9 &&
+      python3 -m pip install --upgrade pip &&
+      python3 -m pip install oci oracledb PyPDF2 flask langchain langchain-community langchain-core &&
+      exec tail -f /dev/null
+      "

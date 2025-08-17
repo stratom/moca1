@@ -1,0 +1,18 @@
+docker-compose down
+docker-compose up -d
+docker exec -it frontendai sh
+
+#back
+docker exec frontendai mkdir -p /app/backend
+docker cp /home/opc/moca/dbai/. frontendai:/app/backend
+#front 
+docker exec frontendai mkdir -p /app/frontendai
+docker cp /home/opc/moca/front/. frontendai:/app/frontendai
+#source
+docker exec frontendai mkdir -p /opt/vector-ai/source
+docker cp /opt/vector-ai/source/. frontendai:/opt/vector-ai/source/
+#docker exec frontendai chmod 777 /opt/vector-ai/source/
+#oci
+docker exec frontendai mkdir -p /root/.oci
+docker cp /home/opc/.oci/. frontendai:/root/.oci
+

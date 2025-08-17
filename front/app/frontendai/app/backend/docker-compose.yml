@@ -1,0 +1,17 @@
+version: '3'
+services:
+  oracle-db:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: ${CONTAINER_NAME}
+    hostname: ${CONTAINER_NAME}
+    ports:
+      - "${PORT}:1521"
+    environment:
+      ORACLE_PWD: ${ORACLE_PWD}
+      ORACLE_CHARACTERSET: AL32UTF8
+      ENABLE_ARCHIVELOG: "false"
+    volumes:
+      - "${VOLUME_PATH}:/opt/oracle/oradata:Z"
+    restart: always
+
+

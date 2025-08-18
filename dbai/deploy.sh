@@ -43,5 +43,5 @@ until docker logs "$CONTAINER_NAME" 2>&1 | grep -q "DATABASE IS READY TO USE"; d
 done
 
 echo "✅ La base de datos está lista. Ejecutando embeddings..."
-#python3 /home/opc/moca/dbai/embed.py
+#python3 /home/opc/moca1/dbai/embed.py
 

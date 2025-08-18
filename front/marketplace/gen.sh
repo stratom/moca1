@@ -3,7 +3,7 @@
 read -p "🔤 Nombre del cliente (COSTUMER): " COSTUMER
 read -p "🌐 Puerto frontend (PORT_FRONTEND): " PORT_FRONTEND
 
-BASE_DIR="$(pwd)"  # /home/opc/moca/front/marketplace
+BASE_DIR="$(pwd)"  # /home/opc/moca1/front/marketplace
 ENV_FILE=".env_${COSTUMER}"
 CLIENT_FILE="${COSTUMER}"
 CLIENT_DIR="${BASE_DIR}/client_${COSTUMER}"  # ⬅️ cambio aquí

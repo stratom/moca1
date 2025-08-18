@@ -1,9 +1,9 @@
 #!/bin/bash
 chmod 600 /app/backend/oracle-db.key
 REMOTE_USER=opc
-REMOTE_HOST=10.0.0.6
+REMOTE_HOST=10.0.0.3
 SSH_KEY=/app/backend/oracle-db.key
-REMOTE_DIR=/home/opc/moca/dbai
+REMOTE_DIR=/home/opc/moca1/dbai
 
 # Leer COSTUMER local desde contenedor
 COSTUMER=$(grep COSTUMER /app/marketplace/oracle | cut -d'=' -f2)

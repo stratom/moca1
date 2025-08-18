@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     volumes:
       - ~/.oci:/root/.oci  # OCI config y key
-      - ~/moca/dbai:/app/backend
-      - ~/moca/front:/app/frontendai
+      - ~/moca1/dbai:/app/backend
+      - ~/moca1/front:/app/frontendai
       - /opt/vector-ai/source:/opt/vector-ai/source/
     working_dir: /app
     ports:

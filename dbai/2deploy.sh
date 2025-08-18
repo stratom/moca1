@@ -6,7 +6,7 @@
 #echo
 
 # Path to volume with the most free space
-#IP=10.0.0.6
+#IP=10.0.0.3
 #VOLUME_PATH="/opt/vector-ai/${CONTAINER_NAME}/volume"
 #mkdir -p "$VOLUME_PATH"
 #sudo cp -r /opt/vector-ai/source "$VOLUME_PATH"
@@ -39,5 +39,5 @@ until docker logs "$CONTAINER_NAME" 2>&1 | grep -q "DATABASE IS READY TO USE"; d
 done
 
 echo "✅ Database is ready. execute embeddings"
-#python3 /home/opc/moca/dbai/embed.py
+#python3 /home/opc/moca1/dbai/embed.py
 

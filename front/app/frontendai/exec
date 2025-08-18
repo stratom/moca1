@@ -4,10 +4,10 @@ docker exec -it frontendai sh
 
 #back
 docker exec frontendai mkdir -p /app/backend
-docker cp /home/opc/moca/dbai/. frontendai:/app/backend
+docker cp /home/opc/moca1/dbai/. frontendai:/app/backend
 #front 
 docker exec frontendai mkdir -p /app/frontendai
-docker cp /home/opc/moca/front/. frontendai:/app/frontendai
+docker cp /home/opc/moca1/front/. frontendai:/app/frontendai
 #source
 docker exec frontendai mkdir -p /opt/vector-ai/source
 docker cp /opt/vector-ai/source/. frontendai:/opt/vector-ai/source/

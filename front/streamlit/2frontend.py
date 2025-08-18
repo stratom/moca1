@@ -122,7 +122,7 @@ with st.expander("📝 Configure deployment environment (without executing)", ex
             env_path = "/app/backend/.env"
             volume_path = f"/opt/vector-ai/{container}/volume/source"
             dir_del     = f"/opt/vector-ai/{container}"
-            ip          = "10.0.0.6"
+            ip          = "10.0.0.3"
 
             env_content = f"""CONTAINER_NAME={container}
 PORT={port}

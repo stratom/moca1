@@ -7,11 +7,11 @@
 
 # Path to volume with the most free space
 #IP=10.0.0.3
-#VOLUME_PATH="/opt/vector-ai/${CONTAINER_NAME}/volume"
+#VOLUME_PATH="/home/opc/moca1/opt/vector-ai/${CONTAINER_NAME}/volume"
 #mkdir -p "$VOLUME_PATH"
-#sudo cp -r /opt/vector-ai/source "$VOLUME_PATH"
+#sudo cp -r /home/opc/moca1/opt/vector-ai/source "$VOLUME_PATH"
 #sudo chmod 777 "$VOLUME_PATH/source"
-#DIR_DEL="/opt/vector-ai/${CONTAINER_NAME}"
+#DIR_DEL="/home/opc/moca1/opt/vector-ai/${CONTAINER_NAME}"
 #sudo chmod 777 "$DIR_DEL"
 
 
@@ -25,8 +25,8 @@
 #IP=${IP}
 #EOF
 
-sudo chown -R 54321:54321 /opt/vector-ai/dbai3/volume/oradata
-sudo chmod -R 775 /opt/vector-ai/dbai3/volume/oradata
+sudo chown -R 54321:54321 /home/opc/moca1/opt/vector-ai/dbai3/volume/oradata
+sudo chmod -R 775 /home/opc/moca1/opt/vector-ai/dbai3/volume/oradata
 
 # Launch container
 docker compose up -d

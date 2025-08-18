@@ -1,1 +1,6 @@
  grep -RIlZ --exclude-dir={.git,backup} '10\.0\.0\.6' . | xargs -0 sed -i 's/10\.0\.0\.6/10.0.0.3/g'
+
+grep -RIn --binary-files=without-match -I -- '/opt/vector-ai' "$(pwd)" 2>/dev/null
+
+grep -RIlZ --exclude-dir=.git --binary-files=without-match -I -- '/opt/vector-ai' . 2>/dev/null | xargs -0 -r sed -i "s#/opt/vector-ai#/home/opc/moca1/opt/vector-ai#g"
+

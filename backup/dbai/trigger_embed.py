@@ -30,7 +30,7 @@ ssh -i "$SSH_KEY" "$REMOTE_USER@$REMOTE_HOST" bash -c "'\
   echo \"🐳 Copiando PDFs desde contenedor $CONTAINER_NAME a \$VOLUME_PATH...\"
   mkdir -p \$VOLUME_PATH
 
-  sudo docker cp $CONTAINER_NAME:/opt/vector-ai/\$CONTAINER_NAME/volume/source/. \$VOLUME_PATH/
+  sudo docker cp $CONTAINER_NAME:/home/opc/moca1/opt/vector-ai/\$CONTAINER_NAME/volume/source/. \$VOLUME_PATH/
 
   echo \"📁 Archivos copiados. Ejecutando embed.py...\"
   python3 embed.py "$COSTUMER"

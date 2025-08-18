@@ -6,11 +6,11 @@ read -s -p "Password: " ORACLE_PWD
 echo
 
 # Path to volume with the most free space
-VOLUME_PATH="/opt/vector-ai/${CONTAINER_NAME}/volume"
+VOLUME_PATH="/home/opc/moca1/opt/vector-ai/${CONTAINER_NAME}/volume"
 mkdir -p "$VOLUME_PATH"
-sudo cp -r /opt/vector-ai/source "$VOLUME_PATH"
+sudo cp -r /home/opc/moca1/opt/vector-ai/source "$VOLUME_PATH"
 sudo chmod 777 "$VOLUME_PATH/source"
-DIR_DEL="/opt/vector-ai/${CONTAINER_NAME}"
+DIR_DEL="/home/opc/moca1/opt/vector-ai/${CONTAINER_NAME}"
 
 # Create .env file
 cat <<EOF > .env

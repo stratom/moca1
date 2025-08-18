@@ -9,9 +9,9 @@ docker cp /home/opc/moca1/dbai/. frontendai:/app/backend
 docker exec frontendai mkdir -p /app/frontendai
 docker cp /home/opc/moca1/front/. frontendai:/app/frontendai
 #source
-docker exec frontendai mkdir -p /opt/vector-ai/source
-docker cp /opt/vector-ai/source/. frontendai:/opt/vector-ai/source/
-#docker exec frontendai chmod 777 /opt/vector-ai/source/
+docker exec frontendai mkdir -p /home/opc/moca1/opt/vector-ai/source
+docker cp /home/opc/moca1/opt/vector-ai/source/. frontendai:/home/opc/moca1/opt/vector-ai/source/
+#docker exec frontendai chmod 777 /home/opc/moca1/opt/vector-ai/source/
 #oci
 docker exec frontendai mkdir -p /root/.oci
 docker cp /home/opc/.oci/. frontendai:/root/.oci

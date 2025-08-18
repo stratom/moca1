@@ -144,8 +144,8 @@ with st.expander("📝 VECTOR DATA BASE CONFIGURATION", expanded=True):
             env_filename = f".env_{costumer}"
             env_path = f"/app/backend/{env_filename}"
 
-            volume_path = f"/opt/vector-ai/{container}/volume/source"
-            dir_del     = f"/opt/vector-ai/{container}"
+            volume_path = f"/home/opc/moca1/opt/vector-ai/{container}/volume/source"
+            dir_del     = f"/home/opc/moca1/opt/vector-ai/{container}"
             ip          = "10.0.0.3"
 
             env_content = f"""CONTAINER_NAME={container}

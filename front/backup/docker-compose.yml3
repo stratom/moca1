@@ -9,7 +9,7 @@ services:
       - ~/.oci:/root/.oci  # OCI config y key
       - ~/moca1/dbai:/app/backend
       - ~/moca1/front:/app/frontendai
-      - /opt/vector-ai/source:/opt/vector-ai/source/
+      - /home/opc/moca1/opt/vector-ai/source:/home/opc/moca1/opt/vector-ai/source/
     working_dir: /app
     ports:
       - "5000:5000"

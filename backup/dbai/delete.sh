@@ -6,7 +6,9 @@ SSH_KEY=/app/backend/oracle-db.key
 REMOTE_DIR=/home/opc/moca/dbai
 
 # Leer COSTUMER local desde contenedor
-COSTUMER=$(grep COSTUMER /app/marketplace/oracle | cut -d'=' -f2)
+MARKETPLACE_DIR="/app/marketplace"
+FILE=$(ls $MARKETPLACE_DIR | head -n 1)
+COSTUMER=$(grep COSTUMER "$MARKETPLACE_DIR/$FILE" | cut -d'=' -f2)
 
 echo "🚀 Conectando por SSH para ejecutar delete.sh en remoto con COSTUMER=$COSTUMER..."
 

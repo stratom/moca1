@@ -6,7 +6,9 @@ SSH_KEY=/app/backend/oracle-db.key
 REMOTE_DIR=/home/opc/moca1/dbai
 
 # Leer COSTUMER desde archivo local
-COSTUMER=$(grep COSTUMER /app/marketplace/oracle | cut -d'=' -f2)
+MARKETPLACE_DIR="/app/marketplace"
+FILE=$(ls $MARKETPLACE_DIR | head -n 1)
+COSTUMER=$(grep COSTUMER "$MARKETPLACE_DIR/$FILE" | cut -d'=' -f2)
 
 echo "🚀 Conectando y ejecutando deploy.sh remotamente..."
 

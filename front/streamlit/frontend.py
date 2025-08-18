@@ -138,15 +138,23 @@ with st.expander("📦 VECTOR DATABASE CONFIGURATION", expanded=False):
         submitted = st.form_submit_button("🚀 CREATE DATABASE")
 
         if submitted:
-            # Leer COSTUMER desde archivo
-            costumer_file = "/app/marketplace/oracle"
+            # Leer COSTUMER desde archivo dinámico en /app/marketplace/
+            marketplace_dir = "/app/marketplace/"
             costumer = "default"
-            if os.path.exists(costumer_file):
-                with open(costumer_file) as f:
-                    for line in f:
-                        if line.startswith("COSTUMER="):
-                            costumer = line.strip().split("=", 1)[1]
-                            break
+            costumer_filename = None
+            try:
+                files = [f for f in os.listdir(marketplace_dir) if os.path.isfile(os.path.join(marketplace_dir, f))]
+                if files:
+                    costumer_filename = files[0]
+                    costumer_file = os.path.join(marketplace_dir, costumer_filename)
+                    with open(costumer_file) as f:
+                        for line in f:
+                            if line.startswith("COSTUMER="):
+                                costumer = line.strip().split("=", 1)[1]
+                                break
+            except Exception:
+                costumer_file = "/app/marketplace/oracle"
+            # costumer_file ahora apunta al archivo dinámico
 
             env_filename = f".env_{costumer}"
             env_path = f"/app/backend/{env_filename}"
@@ -188,7 +196,15 @@ IP={ip}
 
 # === CARGAR .env dinámicamente desde .env_<COSTUMER> ===
 def detectar_costumer():
-    costumer_file = "/app/marketplace/oracle"
+    marketplace_dir = "/app/marketplace/"
+    try:
+        files = [f for f in os.listdir(marketplace_dir) if os.path.isfile(os.path.join(marketplace_dir, f))]
+        if files:
+            costumer_file = os.path.join(marketplace_dir, files[0])
+        else:
+            costumer_file = "/app/marketplace/oracle"
+    except Exception:
+        costumer_file = "/app/marketplace/oracle"
     if os.path.exists(costumer_file):
         with open(costumer_file) as f:
             for line in f:

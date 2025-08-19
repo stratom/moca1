@@ -26,13 +26,15 @@ if [[ -z "$CONTAINER_NAME" || -z "$PORT" || -z "$VOLUME_PATH" || -z "$ORACLE_PWD
 fi
 
 # Crear directorio para oradata si no existe
-echo "📁 Creando $VOLUME_PATH si no existe..."
+echo "📁 Preparando volumen Oracle en $VOLUME_PATH..."
 sudo mkdir -p "$VOLUME_PATH"
-sudo chown -R 54321:54321 "$VOLUME_PATH"
-sudo chmod -R 775 "$VOLUME_PATH"
+sudo rm -rf "$VOLUME_PATH"/*
+sudo chmod 777 "$VOLUME_PATH"
+sudo chown 54321:54321 "$VOLUME_PATH"
 
 # Lanzar contenedor
-echo "🐳 Levantando contenedor Docker..."
+echo "🐳 Exportando variables y levantando contenedor Docker..."
+export $(cat "$ENV_FILE" | xargs)
 docker compose up -d
 
 echo "⏳ Esperando a que la base de datos esté lista..."

@@ -159,7 +159,7 @@ with st.expander("📦 VECTOR DATABASE CONFIGURATION", expanded=False):
             env_filename = f".env_{costumer}"
             env_path = f"/app/backend/{env_filename}"
 
-            volume_path = f"/home/opc/moca1/opt/vector-ai/{container}/volume/source"
+            volume_path = f"/home/opc/moca1/opt/vector-ai/{container}/volume"
             dir_del     = f"/home/opc/moca1/opt/vector-ai/{container}"
             ip          = "10.0.0.3"
 
@@ -288,7 +288,7 @@ if "feedback_mode" not in st.session_state:
 st.markdown("""
 <div style='text-align: center; margin-bottom: 30px;'>
     <h1 style='color: #4e73df;'>🤖 Oracle AI Assistant</h1>
-    <p style='color: #858796;'>Ask me anything about your documents!</p>
+    <p style='color: #858796;'>Ask me anything!</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -318,9 +318,9 @@ if user_prompt:
                 technical_answer = parsed.get("answer2", "No technical answer")
                 meta_chunks = parsed.get("retrieved_chunks_metadata", [])
                 
-                # Agregar ambas respuestas al historial como mensajes separados
+                # Agregar ambas respuestas al historial como mensajes separados y roles distintos
                 st.session_state.history.append(("assistant", f"·Well-founded Answer:\n{context_answer}"))
-                st.session_state.history.append(("assistant", f"·Free-form Answer:\n{technical_answer}"))
+                st.session_state.history.append(("assistant2", f"·Free-form Answer:\n{technical_answer}"))
                 
             except json.JSONDecodeError:
                 bot_answer = raw_response
@@ -333,15 +333,20 @@ if user_prompt:
     st.rerun()
 
 # === Render chat bubbles with streamlit-chat ===
+
 with chat_container:
     for idx, (role, content) in enumerate(st.session_state.history):
         if role == "user":
             message(content, is_user=True, key=f"user_{idx}",
                    avatar_style="bottts-neutral", seed="Demo9")
-        else:
+        elif role == "assistant":
             message(content, key=f"assistant_{idx}",
                    avatar_style="bottts", seed="OracleBot")
+        elif role == "assistant2":
+            message(content, key=f"assistant2_{idx}",
+                   avatar_style="bottts", seed="TechBot")
 
+        if role.startswith("assistant"):
             # Feedback buttons with better styling
             cols = st.columns([0.8, 0.1, 0.1])
             with cols[1]:
